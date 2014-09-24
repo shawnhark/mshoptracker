@@ -16,6 +16,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rails-html-sanitizer', '~> 1.0'
 gem 'autoprefixer-rails'
 gem 'haml-rails'
+gem 'mini_magick'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -23,7 +24,7 @@ gem 'haml-rails'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  gem 'byebug'
+#  gem 'byebug'
   gem 'web-console', '~> 2.0.0.beta2'
   gem 'spring'
   gem 'rspec-rails', '~> 2.0'
