@@ -16,7 +16,14 @@
         .form-group
           %input.form-control{:placeholder => "Search coming soon...", :type => "text"}
         %button.btn.btn-default{:type => "submit"} Submit
-      %ul.nav.navbar-nav.navbar-right
-        %li.divider-vertical
-        %li
-          %a Log In
+      %form.navbar-form.navbar-right
+        .form-group
+          %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown"}
+            Log In
+            %span.caret
+          %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", :role => "menu"}
+            %li{:role => "presentation"}
+              %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Register
+            %li.divider{:role => "presentation"}
+            %li{:role => "presentation"}
+              %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Log In
