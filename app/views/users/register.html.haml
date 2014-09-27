@@ -1,4 +1,5 @@
 %section.register.container
+  = bootstrap_form_for @user
   %form.form-horizontal{:role => "form"}
     .form-group
       %label.col-sm-2.control-label{:for => "first_name"} First Name
@@ -9,11 +10,11 @@
       .col-sm-10
         %input#inputFirstName.form-control{:placeholder => "Last Name", :type => "last_name"}
     .form-group
-      %label.col-sm-2.control-label{:for => "inputEmail"} Email
+      %label.col-sm-2.control-label{:for => "email"} Email
       .col-sm-10
         %input#inputEmail.form-control{:placeholder => "Email", :type => "email"}
     .form-group
-      %label.col-sm-2.control-label{:for => "inputPassword"} Password
+      %label.col-sm-2.control-label{:for => "password"} Password
       .col-sm-10
         %input#inputPassword.form-control{:placeholder => "Password", :type => "password"}
     .form-group

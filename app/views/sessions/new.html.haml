@@ -1,0 +1,21 @@
+%section.login.container
+  %h1 Log In
+  %br
+  %form.form-horizontal{:role => "form"}
+    .well
+      %fieldset
+      = form_for sessions_path, html: { class: "sign-in"} do |f|
+        %br
+        .form-group
+          %label.col-sm-2.control-label Email
+          .col-sm-10
+            = f.email_field :email, placeholder: "Please enter your email address...", class: "form-control"
+        .form-group
+          %label.col-sm-2.control-label Password
+          .col-sm-10
+            = f.password_field :password, placeholder: "Choose your password...", class: "form-control"
+        .form-group
+          .col-sm-offset-2.col-sm-10
+            = f.submit "Log In Now", class: "btn btn-primary"
+
+

@@ -1,13 +1,13 @@
 %nav.navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
   .container-fluid
     .navbar-header
-      %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+      %button.navbar-toggle.collapsed{"data-target" => "#user", "data-toggle" => "collapse", :type => "button"}
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand{:href => "#"} MShop Tracker
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %a.navbar-brand{:href => home_path} MShop Tracker
+    #user.collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li.divider-vertical
         %li
@@ -23,7 +23,7 @@
             %span.caret
           %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", :role => "menu"}
             %li{:role => "presentation"}
-              %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Register
+              %a{:href => "users/new", :role => "menuitem", :tabindex => "-1"}Register
             %li.divider{:role => "presentation"}
             %li{:role => "presentation"}
-              %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Log In
+              %a{:href => "sessions/new", :role => "menuitem", :tabindex => "-1"} Log In
