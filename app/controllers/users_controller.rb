@@ -8,10 +8,10 @@ class UsersController < ApplicationController
     @user = User.new(users_params)
     token = SecureRandom.urlsafe_base64
     if @user.save
-      flash[:notice] = "You have now registered successfully. Please log in."
+      flash.now[:info] = "You have now registered successfully. Please log in."
       redirect_to login_path
     else
-      flash[:alert] = "Unable to register you account. Please try again."
+      flash.now[:danger] = "Unable to register you account. Please try again."
       render :new
     end
   end
@@ -21,8 +21,7 @@ class UsersController < ApplicationController
 
 private
   def users_params
-    params.require(:user).permit!
-    #(:first_name, :last_name, :email, :password, :token, :admin, :active)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :token, :admin, :active)
   end
 
 end

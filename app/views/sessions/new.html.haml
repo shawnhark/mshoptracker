@@ -4,7 +4,7 @@
   %form.form-horizontal{:role => "form"}
     .well
       %fieldset
-      = form_for sessions_path, html: { class: "sign-in"} do |f|
+      = form_for login_path, html: { class: "login"} do |f|
         %br
         .form-group
           %label.col-sm-2.control-label Email
@@ -13,7 +13,7 @@
         .form-group
           %label.col-sm-2.control-label Password
           .col-sm-10
-            = f.password_field :password, placeholder: "Choose your password...", class: "form-control"
+            = f.password_field :password, placeholder: "Please enter your password...", class: "form-control"
         .form-group
           .col-sm-offset-2.col-sm-10
             = f.submit "Log In Now", class: "btn btn-primary"

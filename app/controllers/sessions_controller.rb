@@ -8,9 +8,10 @@ class SessionsController <ApplicationController
     if user && user.authenticate(params[:password])
       if user.active?
         session[:user_id] = user.id
-        redirect_to 'shops/index', notice: "You are now logged in."
+        flash[:success] = "You are now logged in."
+        redirect_to shop_path
       else
-        flash[:danger] = "Your account has been suspended. Please contact customer service."
+        flash[:danger] = "Your account is not active at this time. Please contact customer service."
         redirect_to sign_in_path
       end
     else
@@ -23,6 +24,11 @@ class SessionsController <ApplicationController
     session[:user_id] = nil
     flash[:info] = "You are now logged out."
     redirect_to root_path
+  end
+
+  private
+  def sessions_params
+    params.require(:session).permit!
   end
 
 end
