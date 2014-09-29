@@ -10,20 +10,26 @@
     #user.collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li.divider-vertical
-        %li
-          %a Welcome, user
+        - if logged_in?
+          Welcome, #{current_user.first_name}
+        - else
+          %li
+            %a Welcome
       %form.navbar-form.navbar-left{:role => "search"}
         .form-group
           %input.form-control{:placeholder => "Search coming soon...", :type => "text"}
         %button.btn.btn-default{:type => "submit"} Submit
       %form.navbar-form.navbar-right
         .form-group
-          %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown"}
-            Log In
-            %span.caret
-          %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", :role => "menu"}
-            %li{:role => "presentation"}
-              %a{:href => "users/new", :role => "menuitem", :tabindex => "-1"}Register
-            %li.divider{:role => "presentation"}
-            %li{:role => "presentation"}
-              %a{:href => "sessions/new", :role => "menuitem", :tabindex => "-1"} Log In
+          - if logged_in?
+            %btn.btn-default{:href => logout_path} Log out
+          - else
+            %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown"}
+              Log In
+              %span.caret
+            %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", :role => "menu"}
+              %li{:role => "presentation"}
+                %a{:href => "users/new", :role => "menuitem", :tabindex => "-1"}Register
+              %li.divider{:role => "presentation"}
+              %li{:role => "presentation"}
+                %a{:href => "sessions/new", :role => "menuitem", :tabindex => "-1"} Log In
