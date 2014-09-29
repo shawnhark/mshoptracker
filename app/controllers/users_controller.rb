@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       flash[:notice] = "You have now registered successfully. Please log in."
       redirect_to login_path
     else
-      flash[:error] = "Unable to register you account. Please try again."
+      flash[:alert] = "Unable to register you account. Please try again."
       render :new
     end
   end

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'welcome#welcome'
   get 'home', to: 'welcome#welcome'
 
-  resources :users, only: [:create, :new]
+  resources :users, only: [:create, :new, :show]
   resources :sessions, only: [:create, :new]
   resources :shops
 
