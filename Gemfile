@@ -17,6 +17,7 @@ gem 'rails-html-sanitizer', '~> 1.0'
 gem 'autoprefixer-rails'
 gem 'haml-rails'
 gem 'mini_magick'
+gem 'bcrypt-ruby', '~> 3.1.5'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

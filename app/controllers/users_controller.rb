@@ -6,10 +6,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(users_params)
-    token = SecureRandom.urlsafe_base64
     if @user.save
-      flash.now[:info] = "You have now registered successfully. Please log in."
-      redirect_to login_path
+      log_in @user
+      flash[:info] = "You have now registered successfully, and you are now logged in."
+      redirect_to about_path
     else
       flash.now[:danger] = "Unable to register you account. Please try again."
       render :new

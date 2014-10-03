@@ -4,7 +4,7 @@
   %form.form-horizontal{:role => "form"}
     .well
       %fieldset
-      = form_for login_path, html: { class: "login"} do |f|
+      = form_for(:session, url: login_path) do |f|
         %br
         .form-group
           %label.col-sm-2.control-label Email
@@ -17,5 +17,3 @@
         .form-group
           .col-sm-offset-2.col-sm-10
             = f.submit "Log In Now", class: "btn btn-primary"
-
-

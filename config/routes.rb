@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
-  root 'welcome#welcome'
+  root to: 'welcome#welcome'
   get 'home', to: 'welcome#welcome'
 
-  resources :users, only: [:create, :new, :show]
-  resources :sessions, only: [:create, :new, :destroy]
+  resources :users, only:[:show, :create, :edit, :update]
+  resources :sessions, only: [:new, :create, :destroy]
   resources :shops, only: [:index, :show]
 
   get 'register', to: 'users#new'
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
-  get 'logout', to: 'sessions#destroy'
+  delete 'logout', to: 'sessions#destroy'
   get 'shops', to: 'shops#index'
+  get 'about', to: 'general#about'
 end
