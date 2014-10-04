@@ -16,4 +16,9 @@
             = f.password_field :password, placeholder: "Please enter your password...", class: "form-control"
         .form-group
           .col-sm-offset-2.col-sm-10
-            = f.submit "Log In Now", class: "btn btn-primary"
+            = f.submit "Log In Now", class: "btn btn-primary btn-block"
+  %form.form-horizontal{:role => "form"}
+    .form-group
+      .col-sm-offset-3.col-sm-9
+        %p
+          %h4 New user? #{link_to "Sign up now!", register_path}

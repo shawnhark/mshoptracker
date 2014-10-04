@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(users_params)
     if @user.save
       log_in @user
-      flash[:info] = "You have now registered successfully, and you are now logged in."
+      flash[:info] = "You have registered successfully, and you are now logged in."
       redirect_to about_path
     else
       flash.now[:danger] = "Unable to register you account. Please try again."

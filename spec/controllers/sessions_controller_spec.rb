@@ -8,9 +8,9 @@ describe SessionsController do
     end
 
     it "redirects to the home path when the input is valid" do
-      session[:user_id] = Fabricate(:user).id
+      session[:session][:user_id] = Fabricate(:user).id
       get :new
-      expect(response).to redirect_to shop_path
+      expect(response).to redirect_to register_path
     end
   end
 end
