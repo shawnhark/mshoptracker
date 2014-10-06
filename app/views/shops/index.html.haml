@@ -4,3 +4,8 @@
   %form.form-horizontal{:role => "form"}
     .well
       NO shops are listed yet.
+  %br
+  %form.form-horizontal{:role => "form"}
+    .well
+      %a Add a new shop
+      = link_to "Click here to post", new_shop_path,  class: 'btn btn-info btn-large'

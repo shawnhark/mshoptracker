@@ -4,3 +4,11 @@
   %p Thank you for checking us out. This site will soon offer the opportunity to track all of your mystery shopping assignments and payments.
   %br
   %a.col-sm-offset-2.btn.btn-primary.btn-lg{:href => register_path, :role => "button"} Click here to join!
+  %p
+  %a.col-sm-offset-2 
+  %a 
+  %form.form-horizontal{:role => "form"}
+    .form-group
+      .col-sm-offset-2.col-sm-9
+        %p
+          %h4 Already a user?  #{link_to "Log in here.", login_path}

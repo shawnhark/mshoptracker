@@ -2,7 +2,7 @@ class ShopsController < ApplicationController
   before_action :require_user
 
   def index
-    @shop_items = current_user.shop_items
+    @shops = Shop.find(params[:id]).all
   end
 
   def show

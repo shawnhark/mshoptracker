@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:info] = "You have registered successfully, and you are now logged in."
-      redirect_to about_path
+      redirect_to shops_path
     else
       flash.now[:danger] = "Unable to register you account. Please try again."
       render :new

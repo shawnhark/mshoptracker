@@ -3,13 +3,14 @@ Rails.application.routes.draw do
   get 'home', to: 'welcome#welcome'
 
   resources :users, only:[:show, :create, :edit, :update]
+    resources :shops
+    resources :payments
   resources :sessions, only: [:new, :create, :destroy]
-  resources :shops, only: [:index, :show]
+  
 
   get 'register', to: 'users#new'
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-  get 'shops', to: 'shops#index'
-  get 'about', to: 'general#about'
+  get 'about', :to => redirect('/about.html')
 end
