@@ -1,0 +1,14 @@
+%section.user_home.container
+  %h1 Welcome, #{current_user.first_name}
+  %br
+    .well
+      %br
+      .row
+        %a.button.btn.btn-primary.btn-lg.btn-block{:href => shops_path, :role => "button"} See my shops
+        %br
+      .row
+        %a.button.btn.btn-info.btn-lg.btn-block{:href => new_shop_path, :role => "button"} Add a shop
+        %br
+      .row
+        %a.button.btn.btn-success.btn-lg.btn-block{:role => "button"} Add a payment
+        %br

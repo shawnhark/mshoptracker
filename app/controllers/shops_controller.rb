@@ -2,11 +2,11 @@ class ShopsController < ApplicationController
   before_action :require_user
 
   def index
-    @shops = Shop.find(params[:id]).all
+    @shops = current_user.shops
   end
 
   def show
-    @shop = Shop.find(params[:id])
+    @shop = Shop.find(params[:shop_id])
   end
 
   def new
@@ -15,6 +15,7 @@ class ShopsController < ApplicationController
 
   def create
     @shop = Shop.new(shop_params)
+    @user = current_user
     if @shop.save
       flash.now[:info] = "You have successfully added a new shop."
       redirect_to shop_path

@@ -29,7 +29,9 @@
                 %span.caret
               %ul.dropdown-menu{:role => "menu"}
                 %li{:role => "presentation"}
-                  %a{:href => "", :role => "menuitem", :tabindex => "-1"}Account
+                  = link_to "My shops", user_home_path
+                %li{:role => "presentation"}
+                  = link_to "Account settings", user_home_path
                 %li.divider{:role => "presentation"}
                 %li{:role => "presentation"}
                   = link_to "Log out", logout_path, method: "delete"

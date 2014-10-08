@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-  get 'about', :to => redirect('/about.html')
+  get 'about', to: 'general#about'
+  get 'user_home', to: 'users#user_home'
 end

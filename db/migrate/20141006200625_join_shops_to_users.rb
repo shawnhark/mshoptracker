@@ -1,7 +1,6 @@
 class JoinShopsToUsers < ActiveRecord::Migration
+#added user column to shops table instead of creating join table
   def change
-    create_join_table :users, :shops do |t|
-      t.timestamps
-    end
+    add_column :shops, :user_id, :integer
   end
 end

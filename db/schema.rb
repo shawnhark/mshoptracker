@@ -24,13 +24,7 @@ ActiveRecord::Schema.define(version: 20141006200625) do
     t.string   "ms_company"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "shops_users", id: false, force: true do |t|
-    t.integer  "user_id",    null: false
-    t.integer  "shop_id",    null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
