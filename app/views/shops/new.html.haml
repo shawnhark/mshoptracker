@@ -4,7 +4,8 @@
   %form.form-horizontal{:role => "form"}
     .well
       %fieldset
-        = form_for @shop, { class: "form-horizontal"} do |f|
+        /= form_for(:shop, url: shops_path, class: "form-horizontal") do |f|
+        = form_for @shop, html: { class: "form-horizontal"} do |f|
           %br
           .form-group
             %label.col-sm-2.control-label Store Name

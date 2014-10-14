@@ -13,7 +13,7 @@ describe UsersController do
 
       it "redirects to the login page" do
         post :create, user: Fabricate.attributes_for(:user)
-        expect(response).to redirect_to(about_path)
+        expect(response).to redirect_to(user_home_path)
       end
 
       it "sets flash success notice" do

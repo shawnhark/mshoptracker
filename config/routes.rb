@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   get 'home', to: 'welcome#welcome'
 
   resources :users, only:[:show, :create, :edit, :update]
-    resources :shops
-    resources :payments
+  resources :shops
+  resources :payments
   resources :sessions, only: [:new, :create, :destroy]
   
 

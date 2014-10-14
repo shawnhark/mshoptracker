@@ -2,6 +2,7 @@ class ShopsController < ApplicationController
   before_action :require_user
 
   def index
+    @user = current_user
     @shops = current_user.shops
   end
 
@@ -14,11 +15,11 @@ class ShopsController < ApplicationController
   end
 
   def create
-    @shop = Shop.new(shop_params)
     @user = current_user
+    @shop = Shop.new(shop_params)
     if @shop.save
       flash.now[:info] = "You have successfully added a new shop."
-      redirect_to shop_path
+      redirect_to shop_path(@shop)
     else
       flash.now[:danger] = "Unable to save this shop. Please try again."
       render :new
