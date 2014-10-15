@@ -1,0 +1,35 @@
+= form_for @payment do |f|
+  - if @payment.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@payment.errors.count, "error")} prohibited this payment from being saved:"
+      %ul
+        - @payment.errors.full_messages.each do |msg|
+          %li= msg
+  %br
+    .well
+      %fieldset
+        .form-group
+          %label.col-sm-2.control-label M.S. company
+          .col-sm-10
+            = f.text_field :ms_company, placeholder: "Mystery Shopping Company...", class: "form-control"
+            %br
+        .form-group
+          %label.col-sm-2.control-label Payment
+          .col-sm-10
+            = f.number_field :payments, placeholder: "(numbers only)", class: "form-control"
+            %br
+        .form-group
+          %label.col-sm-2.control-label Pay period begin date
+          .col-sm-10
+            = f.date_select :pay_period_start
+            %p
+            %br
+        .form-group
+          %label.col-sm-2.control-label Pay period end date
+          .col-sm-10
+            = f.date_select :pay_period_end
+            %p
+            %br
+        .actions
+          = hidden_field_tag :user_id, current_user.id
+          = f.submit 'Save Payment', class: "btn btn-block btn-success"

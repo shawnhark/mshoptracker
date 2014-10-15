@@ -15,8 +15,8 @@ class ShopsController < ApplicationController
   end
 
   def create
-    @user = current_user
     @shop = Shop.new(shop_params)
+    @shop.user_id = current_user.id
     if @shop.save
       flash.now[:info] = "You have successfully added a new shop."
       redirect_to shop_path(@shop)

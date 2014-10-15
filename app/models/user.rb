@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_secure_password validations: false
 
   has_many :shops
+  has_many :payments
 
   def deactivate!
     update_column(:active, false)

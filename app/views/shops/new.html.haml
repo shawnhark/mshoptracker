@@ -4,7 +4,6 @@
   %form.form-horizontal{:role => "form"}
     .well
       %fieldset
-        /= form_for(:shop, url: shops_path, class: "form-horizontal") do |f|
         = form_for @shop, html: { class: "form-horizontal"} do |f|
           %br
           .form-group
@@ -41,5 +40,4 @@
               = f.text_field :ms_company, placeholder: "Mystery Shopping Company...", class: "form-control"
           .form-group
             .col-sm-offset-2.col-sm-10
-              = hidden_field_tag :user_id, current_user.id
               = f.submit "Submit Shop", class: "btn btn-primary"

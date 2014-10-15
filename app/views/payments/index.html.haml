@@ -1,0 +1,22 @@
+%h1 Payments
+.well
+  %table.table.table-bordered.table-hover
+    %thead
+      %tr
+        %th MS Company
+        %th Payment
+        %th Pay period start
+        %th Pay period end
+    %tbody
+      - @payments.each do |payment|
+        %tr
+          %td= payment.ms_company
+          %td= payment.payments
+          %td= payment.pay_period_start
+          %td= payment.pay_period_end
+          %td= link_to 'Show', payment, class: "btn btn-info"
+          %td= link_to 'Edit', edit_payment_path(payment), class: "btn btn-warning"
+          %td= link_to 'Delete', payment, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
+  %p
+    %br
+  = link_to 'New Payment', new_payment_path, class: "btn btn-block btn-success"

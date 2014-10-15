@@ -20,7 +20,7 @@
         .form-group
           %input.form-control{:placeholder => "Search coming soon...", :type => "text"}
         %button.btn.btn-default{:type => "submit"} Submit
-      %form.navbar-form.navbar-right
+      %form.navbar-header.navbar-form.navbar-right
         %ul.form-group
           %li.dropdown
             - if logged_in?
@@ -30,6 +30,8 @@
               %ul.dropdown-menu{:role => "menu"}
                 %li{:role => "presentation"}
                   = link_to "My shops", user_home_path
+                %li{:role => "presentation"}
+                  = link_to "My payments", payments_path
                 %li{:role => "presentation"}
                   = link_to "Account settings", user_home_path
                 %li.divider{:role => "presentation"}
