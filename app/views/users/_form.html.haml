@@ -1,0 +1,25 @@
+= form_for @user, html: { class: "form-horizontal"} do |f|
+  %br
+  .form-group
+    %label.col-sm-2.control-label First Name
+    .col-sm-10
+      = f.text_field :first_name, placeholder: "First name...", class: "form-control"
+  .form-group
+    %label.col-sm-2.control-label Last Name
+    .col-sm-10
+      = f.text_field :last_name, placeholder: "Last name...", class: "form-control"
+  .form-group
+    %label.col-sm-2.control-label Email
+    .col-sm-10
+      = f.email_field :email, placeholder: "Please enter your email address...", class: "form-control"
+  .form-group
+    %label.col-sm-2.control-label Password
+    .col-sm-10
+      = f.password_field :password, placeholder: "Choose your password...", class: "form-control"
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      - if logged_in?
+        = f.submit "Update", class: "btn btn-primary"
+        = link_to "Cancel", user_home_path, class: "btn btn-warning"
+      - else
+        = f.submit "Register Now", class: "btn btn-primary"

@@ -22,23 +22,24 @@ class ShopsController < ApplicationController
     @shop.user_id = current_user.id
     if @shop.save
       flash.now[:info] = "You have successfully added a new shop."
-      redirect_to shop_path(@shop)
+      redirect_to shops_path
     else
-      flash.now[:danger] = "Unable to save this shop. Please try again."
+      flash[:danger] = "Unable to save this shop. Please try again."
+      flash[:danger] = @shop.errors
       render :new
     end
   end
 
   def update
     set_shop
-    respond_to do |format|
-      if @shop.update(shop_params)
-        format.html { redirect_to @shop, notice: 'Payment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @shop }
-      else
-        format.html { render :edit }
-        format.json { render json: @shop.errors, status: :unprocessable_entity }
-      end
+    @shop.user_id = current_user.id
+    if @shop.update(shop_params)
+      flash.now[:info] = 'Payment was successfully updated.' 
+      redirect_to shops_path
+    else
+      flash[:danger] = "Unable to save this shop. Please try again."
+      flash[:danger] = @shop.errors
+      render :edit
     end
   end
 

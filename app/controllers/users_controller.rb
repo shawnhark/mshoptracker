@@ -19,6 +19,22 @@ class UsersController < ApplicationController
   def show
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(users_params)
+      flash[:info] = "Your user information was successfully updated."
+      redirect_to user_home_path
+    else
+      flash.now[:danger] = "Unable to register you account. Please try again."
+      flash.now[:danger] = @user.errors
+      render :edit
+    end
+  end
+
   def user_home
     @user = current_user
     @shops = @user.shops
