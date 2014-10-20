@@ -1,6 +1,32 @@
 %section.shop-show.container
-  %h1 My Shops
-  %br
-  %form.form-horizontal{:role => "form"}
-    .well
-      NO shops are listed yet.
+  %h1 Current Shop
+  %p#notice= notice
+  .well
+    %table.table.table-bordered.table-hover
+      %thead
+        %tr
+          %th Store name
+          %th Location
+          %th Shop Date
+          %th Shop Time
+          %th Expenses
+          %th Reimbursement
+          %th Fee
+          %th MS Company
+      %tbody
+        - @user.shops.each do |shop|
+          %tr
+            %td= shop.store_name
+            %td= shop.location
+            %td= display_shop_date(shop.shop_date)
+            %td= display_shop_time(shop.shop_time)
+            %td= shop.expenses
+            %td= shop.reimbursement
+            %td= shop.fee
+            %td= shop.reimbursement
+            %td= link_to 'Edit', edit_shop_path(shop), class: "btn btn-warning"
+            %td= link_to 'Delete', shop, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+= link_to 'Edit', edit_shop_path(@shop)
+\|
+= link_to 'Back', shops_path

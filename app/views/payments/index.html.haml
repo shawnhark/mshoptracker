@@ -1,4 +1,6 @@
 %h1 Payments
+%p
+  %br
 .well
   %table.table.table-bordered.table-hover
     %thead
@@ -11,12 +13,11 @@
       - @payments.each do |payment|
         %tr
           %td= payment.ms_company
-          %td= payment.payments
-          %td= payment.pay_period_start
-          %td= payment.pay_period_end
-          %td= link_to 'Show', payment, class: "btn btn-info"
+          %td= number_with_precision payment.payments, :precision => 2
+          %td= display_shop_date(payment.pay_period_start)
+          %td= display_shop_date(payment.pay_period_end)
           %td= link_to 'Edit', edit_payment_path(payment), class: "btn btn-warning"
           %td= link_to 'Delete', payment, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
   %p
-    %br
-  = link_to 'New Payment', new_payment_path, class: "btn btn-block btn-success"
+  = link_to 'Add A New Payment', new_payment_path, class: "btn btn-block btn-success"
+= link_to "Back to my home page", user_home_path

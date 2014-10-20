@@ -1,10 +1,31 @@
 %section.shop-index.container
   %h1 My Shops
-  %br
-  %form.form-horizontal{:role => "form"}
-    .well
-      NO shops are listed yet.
-  %br
-  %form.form-horizontal{:role => "form"}
-    .well
-      = link_to "Add a new shop", new_shop_path,  class: 'btn btn-success btn-large'
+  %p
+    %br
+  .well
+    %table.table.table-bordered.table-hover
+      %thead
+        %tr
+          %th Store name
+          %th Location
+          %th Shop Date
+          %th Shop Time
+          %th Expenses
+          %th Reimbursement
+          %th Fee
+          %th MS Company
+      %tbody
+        - @user.shops.each do |shop|
+          %tr
+            %td= shop.store_name
+            %td= shop.location
+            %td= display_shop_date(shop.shop_date)
+            %td= display_shop_time(shop.shop_time)
+            %td= number_with_precision shop.expenses, :precision => 2
+            %td= number_with_precision shop.reimbursement, :precision => 2
+            %td= number_with_precision shop.fee, :precision => 2
+            %td= shop.ms_company
+            %td= link_to 'Edit', edit_shop_path(shop), class: "btn btn-warning"
+            %td= link_to 'Delete', shop, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
+    = link_to "Add a new shop", new_shop_path, class: "btn btn-block btn-success"
+  = link_to "Back to my home page", user_home_path

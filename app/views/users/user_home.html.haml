@@ -2,13 +2,53 @@
   %h1 Welcome, #{current_user.first_name}
   %br
     .well
-      %br
-      .row
-        %a.button.btn.btn-primary.btn-lg.btn-block{:href => shops_path, :role => "button"} See my shops
+      %h3 #{link_to "Recent Shops", shops_path}
+      %p
         %br
-      .row
-        %a.button.btn.btn-info.btn-lg.btn-block{:href => new_shop_path, :role => "button"} Add a shop
+        %table.table.table-bordered.table-hover
+          %thead
+            %tr
+              %th Store name
+              %th Location
+              %th Shop Date
+              %th Shop Time
+              %th Expenses
+              %th Reimbursement
+              %th Fee
+              %th MS Company
+          %tbody
+            - @user.shops.limit(5).each do |shop|
+              %tr
+                %td= shop.store_name
+                %td= shop.location
+                %td= display_shop_date(shop.shop_date)
+                %td= display_shop_time(shop.shop_time)
+                %td= number_with_precision shop.expenses, :precision => 2
+                %td= number_with_precision shop.reimbursement, :precision => 2
+                %td= number_with_precision shop.fee, :precision => 2
+                %td= shop.ms_company
+                %td= link_to 'Edit', edit_shop_path(shop), class: "btn btn-warning"
+                %td= link_to 'Delete', shop, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
+        = link_to "Add a new shop", new_shop_path, class: "btn btn-block btn-info"
+
+      %h3 #{link_to "Recent Payments", payments_path}
+      %p
         %br
-      .row
-        %a.button.btn.btn-success.btn-lg.btn-block{:href => new_payment_path, :role => "button"} Add a payment
-        %br
+        %table.table.table-bordered.table-hover
+          %thead
+            %tr
+              %th MS Company
+              %th Payment
+              %th Pay period start
+              %th Pay period end
+          %tbody
+            - @payments.limit(5).each do |payment|
+              %tr
+                %td= payment.ms_company
+                %td= number_with_precision payment.payments, :precision => 2
+                %td= display_shop_date(payment.pay_period_start)
+                %td= display_shop_date(payment.pay_period_end)
+                %td= link_to 'Edit', edit_payment_path(payment), class: "btn btn-warning"
+                %td= link_to 'Delete', payment, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %p
+        = link_to 'Add A New Payment', new_payment_path, class: "btn btn-block btn-success"

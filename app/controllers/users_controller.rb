@@ -20,6 +20,9 @@ class UsersController < ApplicationController
   end
 
   def user_home
+    @user = current_user
+    @shops = @user.shops
+    @payments = @user.payments
   end
 
 private
