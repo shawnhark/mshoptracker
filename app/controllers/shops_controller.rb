@@ -1,5 +1,5 @@
 class ShopsController < ApplicationController
-  before_action :set_shop, only: [:show, :edit, :update, :destroy]
+  before_action :set_shop, only: [:show, :edit, :destroy]
   before_action :require_user
   before_action :set_user_shops, only: [:index, :show]
 
@@ -21,24 +21,20 @@ class ShopsController < ApplicationController
     @shop = Shop.new(shop_params)
     @shop.user_id = current_user.id
     if @shop.save
-      flash.now[:info] = "You have successfully added a new shop."
+      flash[:info] = "You have successfully added a new shop."
       redirect_to shops_path
     else
-      flash[:danger] = "Unable to save this shop. Please try again."
-      flash[:danger] = @shop.errors
       render :new
     end
   end
 
   def update
-    set_shop
-    @shop.user_id = current_user.id
+    @user = current_user
+    @shop = Shop.find(params[:id])
     if @shop.update(shop_params)
-      flash.now[:info] = 'Payment was successfully updated.' 
+      flash[:info] = 'Payment was successfully updated.' 
       redirect_to shops_path
     else
-      flash[:danger] = "Unable to save this shop. Please try again."
-      flash[:danger] = @shop.errors
       render :edit
     end
   end

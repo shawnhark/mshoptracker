@@ -2,7 +2,7 @@
   - if @payment.errors.any?
     #error_explanation
       .alert.alert-danger.alert-dismissable{:role => "alert"}
-        %h2= "#{pluralize(@payment.errors.count, "error")} prohibited this payment from being saved:"
+        %h2= "Please fix the following #{pluralize(@shop.errors.count, "error")}:"
         %ul
           - @payment.errors.full_messages.each do |msg|
             %li= msg
@@ -31,6 +31,9 @@
             = f.date_select :pay_period_end
             %p
             %br
-        .actions
-          = hidden_field_tag :user_id, current_user.id
-          = f.submit 'Save Payment', class: "btn btn-block btn-success"
+            .actions
+              = hidden_field_tag :user_id, current_user.id
+              = f.submit 'Save Payment', class: "btn btn-large btn-success"
+              = link_to "Cancel", user_home_path, class: "btn btn-warning"
+
+            

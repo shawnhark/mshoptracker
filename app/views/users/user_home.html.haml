@@ -3,6 +3,7 @@
   %br
     .well
       %h3 #{link_to "Recent Shops", shops_path}
+      = link_to "See all #{@user.shops.count} shops", shops_path, class: "btn btn-small" 
       %p
         %br
         %table.table.table-bordered.table-hover
@@ -32,6 +33,7 @@
         = link_to "Add a new shop", new_shop_path, class: "btn btn-block btn-info"
 
       %h3 #{link_to "Recent Payments", payments_path}
+      = link_to "See all #{@payments.count} payments", payments_path, class: "btn btn-small"
       %p
         %br
         %table.table.table-bordered.table-hover
