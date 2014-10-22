@@ -4,6 +4,7 @@ class ShopsController < ApplicationController
   before_action :set_user_shops, only: [:index, :show]
 
   def index
+    @current_shops = Shop.current_year(params[2014])
   end
 
   def show
@@ -42,7 +43,7 @@ class ShopsController < ApplicationController
 
   private
   def shop_params
-    params.require(:shop).permit!
+    params.require(:shop).permit(:store_name, :location, :shop_date, :shop_time, :expenses, :reimbursement, :fee, :ms_company, :user_id)
   end
 
   def set_shop
@@ -53,4 +54,12 @@ class ShopsController < ApplicationController
     @user = current_user
     @shops = @user.shops
   end
+
+  def this_year
+    Time.now.year
+  end
+#  def current_year
+#    @shops = Shop.where('extract(year from shop_date = ?', Time.now.year)
+#  end
+
 end

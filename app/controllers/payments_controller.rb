@@ -54,6 +54,6 @@ class PaymentsController < ApplicationController
     end
 
     def payment_params
-      params.require(:payment).permit!
+      params.require(:payment).permit(:ms_company, :payments, :pay_period_start, :pay_period_end, :user_id)
     end
 end

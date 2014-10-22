@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 
 gem 'rails', '4.2.0.beta1'
@@ -18,8 +18,7 @@ gem 'autoprefixer-rails'
 gem 'haml-rails'
 gem 'mini_magick'
 gem 'bcrypt-ruby', '~> 3.1.5'
-# Use Unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -28,7 +27,7 @@ group :development, :test do
 #  gem 'byebug'
   gem 'web-console', '~> 2.0.0.beta2'
   gem 'spring'
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.1.0'
   gem 'fabrication'
   gem 'faker'
   gem 'pry'

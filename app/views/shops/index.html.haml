@@ -2,6 +2,15 @@
   %h1 My Shops
   %p
     %br
+  %ul.nav.nav-tabs{:role => "tablist"}
+    %li.active
+      %a All
+    %li
+      %a{:href => "#"} Previous Years
+    %li
+      %a{:href => "#"} 2014
+    %li
+      %a{:href => "#"} Future Years
   .well
     %table.table.table-bordered.table-hover
       %thead
@@ -14,8 +23,10 @@
           %th Reimbursement
           %th Fee
           %th MS Company
+          %th
+          %th
       %tbody
-        - @user.shops.each do |shop|
+        - @shops.each do |shop|
           %tr
             %td= shop.store_name
             %td= shop.location
@@ -27,5 +38,60 @@
             %td= shop.ms_company
             %td= link_to 'Edit', edit_shop_path(shop), class: "btn btn-warning"
             %td= link_to 'Delete', shop, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %tbody
+        %tr
+          %th
+          %th
+          %th
+          %th       
+          %th Expenses
+          %th Reimbursement
+          %th Fee
+          %th
+          %th
+          %th
+      %tbody
+        - @shops.all do |shop|
+          %tr
+            %th
+            %th
+            %th
+            %th  TOTALS
+            %td= number_with_precision shop.expenses.sum, :precision => 2
+            %td= number_with_precision shop.all.reimbursement.sum, :precision => 2
+            %td= number_with_precision shop.all.fee.sum, :precision => 2
+            %th
+            %th
+            %th
     = link_to "Add a new shop", new_shop_path, class: "btn btn-block btn-success"
+    %h4 Total Expenses: 
+  .well
+    %table.table.table-bordered.table-hover
+      %thead
+        %tr
+          %th Store name
+          %th Location
+          %th Shop Date
+          %th Shop Time
+          %th Expenses
+          %th Reimbursement
+          %th Fee
+          %th MS Company
+          %th
+          %th
+      %tbody
+        %h4 Current year shops:
+        - @current_shops.each do |shop|
+          %tr
+            %td= shop.store_name
+            %td= shop.location
+            %td= display_shop_date(shop.shop_date)
+            %td= display_shop_time(shop.shop_time)
+            %td= number_with_precision shop.expenses, :precision => 2
+            %td= number_with_precision shop.reimbursement, :precision => 2
+            %td= number_with_precision shop.fee, :precision => 2
+            %td= shop.ms_company
+            %td= link_to 'Edit', edit_shop_path(shop), class: "btn btn-warning"
+            %td= link_to 'Delete', shop, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
+
   = link_to "<< Back to my home page", user_home_path
