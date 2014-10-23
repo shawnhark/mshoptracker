@@ -9,4 +9,6 @@ class Shop < ActiveRecord::Base
     where("strftime('%Y', shop_date) = ?", Time.now.year)
   end
   
+
+  
 end

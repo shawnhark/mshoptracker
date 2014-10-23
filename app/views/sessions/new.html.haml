@@ -1,9 +1,9 @@
 %section.login.container
   %h1 Log In
   %br
-  %form.form-horizontal{:role => "form"}
+  %form.form-horizontal
     .well
-      %fieldset
+      %form.form-horizontal{:role => "form"}
       = form_for(:session, url: login_path) do |f|
         %br
         .form-group
@@ -17,8 +17,5 @@
         .form-group
           .col-sm-offset-2.col-sm-10
             = f.submit "Log In Now", class: "btn btn-primary btn-block"
-  %form.form-horizontal{:role => "form"}
-    .form-group
-      .col-sm-offset-3.col-sm-9
-        %p
-          %h4 New user? #{link_to "Sign up now!", register_path}
+
+  %h4 New user? #{link_to "Sign up now!", register_path}

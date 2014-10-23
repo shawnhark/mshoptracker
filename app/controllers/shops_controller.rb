@@ -5,6 +5,9 @@ class ShopsController < ApplicationController
 
   def index
     @current_shops = Shop.current_year(params[2014])
+    @expense_total = Shop.reduce(0) do |sum, value|
+      sum + value
+    end
   end
 
   def show
@@ -58,6 +61,7 @@ class ShopsController < ApplicationController
   def this_year
     Time.now.year
   end
+
 #  def current_year
 #    @shops = Shop.where('extract(year from shop_date = ?', Time.now.year)
 #  end
