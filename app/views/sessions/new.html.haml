@@ -1,9 +1,8 @@
 %section.login.container
   %h1 Log In
   %br
-  %form.form-horizontal
+  .form.form-horizontal
     .well
-      %form.form-horizontal{:role => "form"}
       = form_for(:session, url: login_path) do |f|
         %br
         .form-group

@@ -1,9 +1,8 @@
 %section.register.container
   %h1 Sign Up
   %br
-  %form.form-horizontal{:role => "form"}
+  %form.form-horizontal
     .well
-      %fieldset
       = form_for @user, html: { class: "form-horizontal"} do |f|
         %br
         .form-group
