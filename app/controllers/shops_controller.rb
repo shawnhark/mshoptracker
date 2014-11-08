@@ -4,10 +4,29 @@ class ShopsController < ApplicationController
   before_action :set_user_shops, only: [:index, :show]
 
   def index
-    @current_shops = Shop.current_year(params[2014])
-    @expense_total = Shop.reduce(0) do |sum, value|
-      sum + value
-    end
+#    @current_shops = Shop.where("user_id = ? AND shop_date = ?", current_user.id, Time.now.year)
+    #syntax
+
+#    @current_shops = Shop.where("user_id = ? AND shop_date = ?", current_user.id, Time.now.year )
+    #WHERE (user_id = 9 AND shop_date = 2014)
+
+#    @current_shops = Shop.current.where("user_id = ?", current_user.id )
+    #WHERE (shop_date = 2014 ) AND (user_id = 9)
+
+#    @current_shops = User.joins(:shops).where("shop_date = ?", Time.now.year)
+    #INNER JOIN "shops" ON "shops"."user_id" = "users"."id" WHERE (shop_date = 2014)
+
+#    @current_shops = @shops.current_year(params[this_year])
+    #WHERE "shops"."user_id" = ? AND (strftime('%Y', shop_date) = 2014)  [["user_id", 9]]
+
+    @current_shops = @shops.current
+    #WHERE "shops"."user_id" = ? AND (shop_date = 2014 )  [["user_id", 9]]
+
+#    @current_shops = Shop.where("user_id = ?", current_user.id).where("shop_date = ?", Time.now.year)
+
+#    @expense_total = Shop.reduce(0) do |sum, value|
+#      sum + value
+#    end
   end
 
   def show

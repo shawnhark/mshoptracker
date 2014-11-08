@@ -7,39 +7,41 @@
           - @shop.errors.full_messages.each do |msg|
             %li= msg
   %br
-  .form-group
-    %label.col-sm-2.control-label Store Name
-    .col-sm-10
-      = f.text_field :store_name, placeholder: "Store name...", class: "form-control"
-  .form-group
-    %label.col-sm-2.control-label Location
-    .col-sm-10
-      = f.text_field :location, placeholder: "Location...", class: "form-control"
-  .form-group
-    %label.col-sm-2.control-label Shop date
-    .col-sm-10
-      = f.date_select :shop_date
-  .form-group
-    %label.col-sm-2.control-label Shop time
-    .col-sm-10
-      = f.time_select :shop_time, ampm: true
-  .form-group
-    %label.col-sm-2.control-label Expenses
-    .col-sm-10
-      = f.number_field :expenses, placeholder: "(numbers only)", class: "form-control"
-  .form-group
-    %label.col-sm-2.control-label Reimbursement
-    .col-sm-10
-      = f.number_field :reimbursement, placeholder: "(numbers only)", class: "form-control"
-  .form-group
-    %label.col-sm-2.control-label Fee
-    .col-sm-10
-      = f.number_field :fee, placeholder: "(numbers only)", class: "form-control"
-  .form-group
-    %label.col-sm-2.control-label M.S. company
-    .col-sm-10
-      = f.text_field :ms_company, placeholder: "Mystery Shopping Company...", class: "form-control"
-  .form-group
-    .col-sm-offset-2.col-sm-10
-      = f.submit "Submit Shop", class: "btn btn-primary"
-      = link_to "Cancel", user_home_path, class: "btn btn-warning"
+    .well
+      %fieldset
+        .form-group
+          %label.col-sm-2.control-label Store Name
+          .col-sm-10
+            = f.text_field :store_name, placeholder: "Store name...", class: "form-control"
+        .form-group
+          %label.col-sm-2.control-label Location
+          .col-sm-10
+            = f.text_field :location, placeholder: "Location...", class: "form-control"
+        .form-group
+          %label.col-sm-2.control-label Shop date
+          .col-sm-10
+            = f.date_select :shop_date
+        .form-group
+          %label.col-sm-2.control-label Shop time
+          .col-sm-10
+            = f.time_select :shop_time, ampm: true
+        .form-group
+          %label.col-sm-2.control-label Expenses
+          .col-sm-10
+            = f.number_field :expenses, placeholder: "(numbers only)", class: "form-control"
+        .form-group
+          %label.col-sm-2.control-label Reimbursement
+          .col-sm-10
+            = f.number_field :reimbursement, placeholder: "(numbers only)", class: "form-control"
+        .form-group
+          %label.col-sm-2.control-label Fee
+          .col-sm-10
+            = f.number_field :fee, placeholder: "(numbers only)", class: "form-control"
+        .form-group
+          %label.col-sm-2.control-label M.S. company
+          .col-sm-10
+            = f.text_field :ms_company, placeholder: "Mystery Shopping Company...", class: "form-control"
+        .form-group
+          .col-sm-offset-2.col-sm-10
+            = f.submit "Submit Shop", class: "btn btn-primary"
+            = link_to "Cancel", user_home_path, class: "btn btn-warning"
