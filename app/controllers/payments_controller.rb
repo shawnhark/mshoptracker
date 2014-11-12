@@ -1,6 +1,7 @@
 class PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
   before_action :set_user
+  before_action :require_user
 
   def index
     @payments = @user.payments

@@ -32,9 +32,9 @@
             %td= shop.location
             %td= display_shop_date(shop.shop_date)
             %td= display_shop_time(shop.shop_time)
-            %td= number_with_precision shop.expenses, :precision => 2
-            %td= number_with_precision shop.reimbursement, :precision => 2
-            %td= number_with_precision shop.fee, :precision => 2
+            %td= number_to_currency shop.expenses
+            %td= number_to_currency shop.reimbursement
+            %td= number_to_currency shop.fee
             %td= shop.ms_company
             %td= link_to 'Edit', edit_shop_path(shop), class: "btn btn-warning"
             %td= link_to 'Delete', shop, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
@@ -43,29 +43,14 @@
           %th
           %th
           %th
-          %th       
-          %th Expenses
-          %th Reimbursement
-          %th Fee
+          %th  TOTALS
+          %th= number_to_currency @shops.sum(:expenses)
+          %th= number_to_currency @shops.sum(:reimbursement)
+          %th= number_to_currency @shops.sum(:fee)
           %th
           %th
           %th
-      %tbody
-        - @shops.all do |shop|
-          %tr
-            %th
-            %th
-            %th
-            %th  TOTALS
-            %td= number_with_precision shop.expenses.sum, :precision => 2
-            %td= number_with_precision shop.all.reimbursement.sum, :precision => 2
-            %td= number_with_precision shop.all.fee.sum, :precision => 2
-            %th
-            %th
-            %th
     = link_to "Add a new shop", new_shop_path, class: "btn btn-block btn-success"
-    %h4 Total Expenses: 
-    
   .well
     %table.table.table-bordered.table-hover
       %thead
@@ -82,15 +67,15 @@
           %th
       %tbody
         %h4 Current year shops:
-        - @current_shops.each do |shop|
+        - @shops.by_year((Time.now.year), field: :shop_date).each do |shop|
           %tr
             %td= shop.store_name
             %td= shop.location
             %td= display_shop_date(shop.shop_date)
             %td= display_shop_time(shop.shop_time)
-            %td= number_with_precision shop.expenses, :precision => 2
-            %td= number_with_precision shop.reimbursement, :precision => 2
-            %td= number_with_precision shop.fee, :precision => 2
+            %td= number_to_currency shop.expenses
+            %td= number_to_currency shop.reimbursement
+            %td= number_to_currency shop.fee
             %td= shop.ms_company
             %td= link_to 'Edit', edit_shop_path(shop), class: "btn btn-warning"
             %td= link_to 'Delete', shop, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }

@@ -9,15 +9,25 @@
         %th Payment
         %th Pay period start
         %th Pay period end
+        %th 
+        %th
     %tbody
       - @payments.each do |payment|
         %tr
           %td= payment.ms_company
-          %td= number_with_precision payment.payments, :precision => 2
+          %td= number_to_currency payment.payments
           %td= display_shop_date(payment.pay_period_start)
           %td= display_shop_date(payment.pay_period_end)
           %td= link_to 'Edit', edit_payment_path(payment), class: "btn btn-warning"
           %td= link_to 'Delete', payment, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
+    %thead
+      %tr
+        %th TOTALS
+        %td= number_to_currency @payments.sum(:payments)
+        %th 
+        %th 
+        %th 
+        %th
   %p
   = link_to 'Add A New Payment', new_payment_path, class: "btn btn-block btn-success"
 = link_to "<< Back to my home page", user_home_path

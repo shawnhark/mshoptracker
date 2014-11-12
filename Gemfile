@@ -18,6 +18,7 @@ gem 'autoprefixer-rails'
 gem 'haml-rails'
 gem 'mini_magick'
 gem 'bcrypt-ruby', '~> 3.1.5'
+gem 'by_star', '~> 2.2.1'
 #gem 'unicorn'
 
 # Use Capistrano for deployment

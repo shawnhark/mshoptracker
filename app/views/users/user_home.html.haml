@@ -2,6 +2,25 @@
   %h1 Welcome, #{current_user.first_name}
   %br
     .well
+      %h3 Summary
+      %p
+        %br
+        %table.table.table-bordered.table-hover
+          %thead
+            %tr
+              %th Year
+              %th Expenses
+              %th Reimbursements
+              %th Fees
+              %th Profit
+          %tbody
+            %tr
+              %td #{Time.now.year}
+              %td= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:expenses)
+              %td= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:reimbursement)
+              %td= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:fee)
+              %td= number_to_currency (@shops.by_year((Time.now.year), field: :shop_date).sum(:reimbursement) + @shops.by_year((Time.now.year), field: :shop_date).sum(:fee)) - @shops.by_year((Time.now.year), field: :shop_date).sum(:expenses)
+    .well
       %h3 #{link_to "Recent Shops", shops_path}
       = link_to "See all #{@user.shops.count} shops", shops_path, class: "btn btn-small" 
       %p
@@ -24,9 +43,9 @@
                 %td= shop.location
                 %td= display_shop_date(shop.shop_date)
                 %td= display_shop_time(shop.shop_time)
-                %td= number_with_precision shop.expenses, :precision => 2
-                %td= number_with_precision shop.reimbursement, :precision => 2
-                %td= number_with_precision shop.fee, :precision => 2
+                %td= number_to_currency shop.expenses, :precision => 2
+                %td= number_to_currency shop.reimbursement, :precision => 2
+                %td= number_to_currency shop.fee, :precision => 2
                 %td= shop.ms_company
                 %td= link_to 'Edit', edit_shop_path(shop), class: "btn btn-warning"
                 %td= link_to 'Delete', shop, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
@@ -47,7 +66,7 @@
             - @payments.limit(5).each do |payment|
               %tr
                 %td= payment.ms_company
-                %td= number_with_precision payment.payments, :precision => 2
+                %td= number_to_currency payment.payments, :precision => 2
                 %td= display_shop_date(payment.pay_period_start)
                 %td= display_shop_date(payment.pay_period_end)
                 %td= link_to 'Edit', edit_payment_path(payment), class: "btn btn-warning"

@@ -36,8 +36,7 @@ class UsersController < ApplicationController
   end
 
   def user_home
-    @user = current_user
-    @shops = @user.shops
+    set_user_shops
     @payments = @user.payments
   end
 
@@ -46,4 +45,8 @@ private
     params.require(:user).permit(:first_name, :last_name, :email, :password, :token, :admin, :active)
   end
 
+  def set_user_shops
+    @user = current_user
+    @shops = @user.shops
+  end
 end
