@@ -5,17 +5,19 @@
       %h3 Summary
       %p
         %br
-        %table.table.table-bordered.table-hover
+        %table.table.table-bordered.table-responsive
           %thead
-            %tr
+            %tr.warning
               %th Year
+              %th Shops
               %th Expenses
               %th Reimbursements
               %th Fees
               %th Profit
-          %tbody
+          %tbody.table.table-hover
             %tr
               %td #{Time.now.year}
+              %td= @shops.by_year((Time.now.year), field: :shop_date).count
               %td= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:expenses)
               %td= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:reimbursement)
               %td= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:fee)
@@ -27,7 +29,7 @@
         %br
         %table.table.table-bordered.table-hover
           %thead
-            %tr
+            %tr.info
               %th Store name
               %th Location
               %th Shop Date
@@ -36,7 +38,9 @@
               %th Reimbursement
               %th Fee
               %th MS Company
-          %tbody
+              %th
+              %th
+          %tbody.table.table-hover
             - @user.shops.limit(5).each do |shop|
               %tr
                 %td= shop.store_name
@@ -57,12 +61,14 @@
         %br
         %table.table.table-bordered.table-hover
           %thead
-            %tr
+            %tr.info
               %th MS Company
               %th Payment
               %th Pay period start
               %th Pay period end
-          %tbody
+              %th
+              %th
+          %tbody.table.table-hover
             - @payments.limit(5).each do |payment|
               %tr
                 %td= payment.ms_company
@@ -73,4 +79,4 @@
                 %td= link_to 'Delete', payment, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
         %p
         = link_to 'Add A New Payment', new_payment_path, class: "btn btn-block btn-success"
-    = link_to 'Update my account', edit_user_path(current_user), class: "btn btn-large btn-default"
+    = link_to 'Update my account', edit_user_path(current_user), class: "btn btn-large btn-warning"

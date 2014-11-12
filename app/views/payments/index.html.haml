@@ -4,14 +4,14 @@
 .well
   %table.table.table-bordered.table-hover
     %thead
-      %tr
+      %tr.info
         %th MS Company
         %th Payment
         %th Pay period start
         %th Pay period end
         %th 
         %th
-    %tbody
+    %tbody.table.table-hover
       - @payments.each do |payment|
         %tr
           %td= payment.ms_company
@@ -21,7 +21,7 @@
           %td= link_to 'Edit', edit_payment_path(payment), class: "btn btn-warning"
           %td= link_to 'Delete', payment, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
     %thead
-      %tr
+      %tr.success
         %th TOTALS
         %td= number_to_currency @payments.sum(:payments)
         %th 
@@ -30,4 +30,4 @@
         %th
   %p
   = link_to 'Add A New Payment', new_payment_path, class: "btn btn-block btn-success"
-= link_to "<< Back to my home page", user_home_path
+= link_to "<< Back to my home page", user_home_path, class: "btn btn-info"

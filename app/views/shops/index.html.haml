@@ -6,15 +6,15 @@
     %li.active
       %a All
     %li
-      %a{:href => "#"} Previous Years
+      %a{:href => "#previous_year"} #{(Time.now.year)-1}
     %li
-      %a{:href => "#"} 2014
+      %a{:href => "#current_year"} #{Time.now.year}
     %li
-      %a{:href => "#"} Future Years
+      %a{:href => "#next_year"} #{(Time.now.year)+1}
   .well
     %table.table.table-bordered.table-hover
       %thead
-        %tr
+        %tr.info
           %th Store name
           %th Location
           %th Shop Date
@@ -25,7 +25,7 @@
           %th MS Company
           %th
           %th
-      %tbody
+      %tbody.table.table-hover
         - @shops.each do |shop|
           %tr
             %td= shop.store_name
@@ -39,7 +39,7 @@
             %td= link_to 'Edit', edit_shop_path(shop), class: "btn btn-warning"
             %td= link_to 'Delete', shop, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
       %tbody
-        %tr
+        %tr.success
           %th
           %th
           %th
@@ -51,10 +51,10 @@
           %th
           %th
     = link_to "Add a new shop", new_shop_path, class: "btn btn-block btn-success"
-  .well
+  .well#current_year
     %table.table.table-bordered.table-hover
       %thead
-        %tr
+        %tr.info
           %th Store name
           %th Location
           %th Shop Date
@@ -65,8 +65,8 @@
           %th MS Company
           %th
           %th
-      %tbody
-        %h4 Current year shops:
+      %tbody.table.table-hover
+        %h4 All #{Time.now.year} shops:
         - @shops.by_year((Time.now.year), field: :shop_date).each do |shop|
           %tr
             %td= shop.store_name
@@ -79,5 +79,100 @@
             %td= shop.ms_company
             %td= link_to 'Edit', edit_shop_path(shop), class: "btn btn-warning"
             %td= link_to 'Delete', shop, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %tbody
+        %tr.success
+          %th
+          %th
+          %th
+          %th  TOTALS
+          %th= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:expenses)
+          %th= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:reimbursement)
+          %th= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:fee)
+          %th
+          %th
+          %th
 
-  = link_to "<< Back to my home page", user_home_path
+  .well#previous_year
+    %table.table.table-bordered.table-hover
+      %thead
+        %tr.info
+          %th Store name
+          %th Location
+          %th Shop Date
+          %th Shop Time
+          %th Expenses
+          %th Reimbursement
+          %th Fee
+          %th MS Company
+          %th
+          %th
+      %tbody.table.table-hover
+        %h4 All #{(Time.now.year)-1} shops:
+        - @shops.by_year((Time.now.year)-1, field: :shop_date).each do |shop|
+          %tr
+            %td= shop.store_name
+            %td= shop.location
+            %td= display_shop_date(shop.shop_date)
+            %td= display_shop_time(shop.shop_time)
+            %td= number_to_currency shop.expenses
+            %td= number_to_currency shop.reimbursement
+            %td= number_to_currency shop.fee
+            %td= shop.ms_company
+            %td= link_to 'Edit', edit_shop_path(shop), class: "btn btn-warning"
+            %td= link_to 'Delete', shop, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %tbody
+        %tr.success
+          %th
+          %th
+          %th
+          %th  TOTALS
+          %th= number_to_currency @shops.by_year((Time.now.year)-1, field: :shop_date).sum(:expenses)
+          %th= number_to_currency @shops.by_year((Time.now.year)-1, field: :shop_date).sum(:reimbursement)
+          %th= number_to_currency @shops.by_year((Time.now.year)-1, field: :shop_date).sum(:fee)
+          %th
+          %th
+          %th
+
+  .well#next_year
+    %table.table.table-bordered.table-hover
+      %thead
+        %tr.info
+          %th Store name
+          %th Location
+          %th Shop Date
+          %th Shop Time
+          %th Expenses
+          %th Reimbursement
+          %th Fee
+          %th MS Company
+          %th
+          %th
+      %tbody.table.table-hover
+        %h4 All #{(Time.now.year)+1} shops:
+        - @shops.by_year((Time.now.year)+1, field: :shop_date).each do |shop|
+          %tr
+            %td= shop.store_name
+            %td= shop.location
+            %td= display_shop_date(shop.shop_date)
+            %td= display_shop_time(shop.shop_time)
+            %td= number_to_currency shop.expenses
+            %td= number_to_currency shop.reimbursement
+            %td= number_to_currency shop.fee
+            %td= shop.ms_company
+            %td= link_to 'Edit', edit_shop_path(shop), class: "btn btn-warning"
+            %td= link_to 'Delete', shop, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %tbody
+        %tr.success
+          %th
+          %th
+          %th
+          %th  TOTALS
+          %th= number_to_currency @shops.by_year((Time.now.year)+1, field: :shop_date).sum(:expenses)
+          %th= number_to_currency @shops.by_year((Time.now.year)+1, field: :shop_date).sum(:reimbursement)
+          %th= number_to_currency @shops.by_year((Time.now.year)+1, field: :shop_date).sum(:fee)
+          %th
+          %th
+          %th
+
+
+  = link_to "<< Back to my home page", user_home_path, class: "btn btn-info"
