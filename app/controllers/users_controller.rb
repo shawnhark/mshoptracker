@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_user, only: [:index, :show, :edit, :update, :user_home]
 
   def new
     @user = User.new

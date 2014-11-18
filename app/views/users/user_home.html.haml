@@ -1,82 +1,85 @@
-%section.user_home.container
-  %h1 Welcome, #{current_user.first_name}
-  %br
-    .well
-      %h3 Summary
-      %p
-        %br
-        %table.table.table-bordered.table-responsive
-          %thead
-            %tr.warning
-              %th Year
-              %th Shops
-              %th Expenses
-              %th Reimbursements
-              %th Fees
-              %th Profit
-          %tbody.table.table-hover
-            %tr
-              %td #{Time.now.year}
-              %td= @shops.by_year((Time.now.year), field: :shop_date).count
-              %td= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:expenses)
-              %td= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:reimbursement)
-              %td= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:fee)
-              %td= number_to_currency (@shops.by_year((Time.now.year), field: :shop_date).sum(:reimbursement) + @shops.by_year((Time.now.year), field: :shop_date).sum(:fee)) - @shops.by_year((Time.now.year), field: :shop_date).sum(:expenses)
-    .well
-      %h3 #{link_to "Recent Shops", shops_path}
-      = link_to "See all #{@user.shops.count} shops", shops_path, class: "btn btn-small" 
-      %p
-        %br
-        %table.table.table-bordered.table-hover
-          %thead
-            %tr.info
-              %th Store name
-              %th Location
-              %th Shop Date
-              %th Shop Time
-              %th Expenses
-              %th Reimbursement
-              %th Fee
-              %th MS Company
-              %th
-              %th
-          %tbody.table.table-hover
-            - @user.shops.limit(5).each do |shop|
-              %tr
-                %td= shop.store_name
-                %td= shop.location
-                %td= display_shop_date(shop.shop_date)
-                %td= display_shop_time(shop.shop_time)
-                %td= number_to_currency shop.expenses, :precision => 2
-                %td= number_to_currency shop.reimbursement, :precision => 2
-                %td= number_to_currency shop.fee, :precision => 2
-                %td= shop.ms_company
-                %td= link_to 'Edit', edit_shop_path(shop), class: "btn btn-warning"
-                %td= link_to 'Delete', shop, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
-        = link_to "Add a new shop", new_shop_path, class: "btn btn-block btn-info"
-
-      %h3 #{link_to "Recent Payments", payments_path}
-      = link_to "See all #{@payments.count} payments", payments_path, class: "btn btn-small"
-      %p
-        %br
-        %table.table.table-bordered.table-hover
-          %thead
-            %tr.info
-              %th MS Company
-              %th Payment
-              %th Pay period start
-              %th Pay period end
-              %th
-              %th
-          %tbody.table.table-hover
-            - @payments.limit(5).each do |payment|
-              %tr
-                %td= payment.ms_company
-                %td= number_to_currency payment.payments, :precision => 2
-                %td= display_shop_date(payment.pay_period_start)
-                %td= display_shop_date(payment.pay_period_end)
-                %td= link_to 'Edit', edit_payment_path(payment), class: "btn btn-warning"
-                %td= link_to 'Delete', payment, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
+- unless logged_in?
+  - flash[:error] = "Sorry, you must be logged in to access that page."
+- else  
+  %section.user_home.container
+    %h1 Welcome, #{current_user.first_name}
+    %br
+      .well
+        %h3 Summary
         %p
-        = link_to 'Add A New Payment', new_payment_path, class: "btn btn-block btn-success"
-    = link_to 'Update my account', edit_user_path(current_user), class: "btn btn-large btn-warning"
+          %br
+          %table.table.table-bordered.table-responsive
+            %thead
+              %tr.warning
+                %th Year
+                %th Shops
+                %th Expenses
+                %th Reimbursements
+                %th Fees
+                %th Profit
+            %tbody.table.table-hover
+              %tr
+                %td #{Time.now.year}
+                %td= @shops.by_year((Time.now.year), field: :shop_date).count
+                %td= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:expenses)
+                %td= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:reimbursement)
+                %td= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:fee)
+                %td= number_to_currency (@shops.by_year((Time.now.year), field: :shop_date).sum(:reimbursement) + @shops.by_year((Time.now.year), field: :shop_date).sum(:fee)) - @shops.by_year((Time.now.year), field: :shop_date).sum(:expenses)
+      .well
+        %h3 #{link_to "Recent Shops", shops_path}
+        = link_to "See all #{@user.shops.count} shops", shops_path, class: "btn btn-small" 
+        %p
+          %br
+          %table.table.table-bordered.table-hover
+            %thead
+              %tr.info
+                %th Store name
+                %th Location
+                %th Shop Date
+                %th Shop Time
+                %th Expenses
+                %th Reimbursement
+                %th Fee
+                %th MS Company
+                %th
+                %th
+            %tbody.table.table-hover
+              - @user.shops.limit(5).each do |shop|
+                %tr
+                  %td= shop.store_name
+                  %td= shop.location
+                  %td= display_shop_date(shop.shop_date)
+                  %td= display_shop_time(shop.shop_time)
+                  %td= number_to_currency shop.expenses, :precision => 2
+                  %td= number_to_currency shop.reimbursement, :precision => 2
+                  %td= number_to_currency shop.fee, :precision => 2
+                  %td= shop.ms_company
+                  %td= link_to 'Edit', edit_shop_path(shop), class: "btn btn-warning"
+                  %td= link_to 'Delete', shop, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
+          = link_to "Add a new shop", new_shop_path, class: "btn btn-block btn-info"
+
+        %h3 #{link_to "Recent Payments", payments_path}
+        = link_to "See all #{@payments.count} payments", payments_path, class: "btn btn-small"
+        %p
+          %br
+          %table.table.table-bordered.table-hover
+            %thead
+              %tr.info
+                %th MS Company
+                %th Payment
+                %th Pay period start
+                %th Pay period end
+                %th
+                %th
+            %tbody.table.table-hover
+              - @payments.limit(5).each do |payment|
+                %tr
+                  %td= payment.ms_company
+                  %td= number_to_currency payment.payments, :precision => 2
+                  %td= display_shop_date(payment.pay_period_start)
+                  %td= display_shop_date(payment.pay_period_end)
+                  %td= link_to 'Edit', edit_payment_path(payment), class: "btn btn-warning"
+                  %td= link_to 'Delete', payment, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' }
+          %p
+          = link_to 'Add A New Payment', new_payment_path, class: "btn btn-block btn-success"
+      = link_to 'Update my account', edit_user_path(current_user), class: "btn btn-large btn-warning"
