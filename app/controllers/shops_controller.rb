@@ -2,6 +2,7 @@ class ShopsController < ApplicationController
   before_action :set_shop, only: [:show, :edit, :destroy]
   before_action :require_user
   before_action :set_user_shops, only: [:index, :show]
+  before_action :set_timezone
 
   def index
   end
@@ -62,16 +63,15 @@ class ShopsController < ApplicationController
   end
 
   def this_year
-    Time.now.year
+    Time.current.year
   end
-
 
 #  def shop_profit
 #    (@shop.reimbursement + @shop.fee) - @shop.expenses
 #  end
 
 #  def current_year
-#    @shops = Shop.where('extract(year from shop_date = ?', Time.now.year)
+#    @shops = Shop.where('extract(year from shop_date = ?', Time.current.year)
 #  end
 
 end

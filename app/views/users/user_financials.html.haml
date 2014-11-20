@@ -1,0 +1,28 @@
+- unless logged_in?
+  - flash[:error] = "Sorry, you must be logged in to access that page."
+- else  
+  %section.user_home.container
+    %h1 Welcome, #{current_user.first_name}
+    %br
+      .well
+        %h3 Financial Summary
+        %h4 #{Time.now.year}
+        %p
+          %br
+          %table.table.table-bordered.table-responsive
+            %thead
+              %tr.warning
+                %th Month
+                %th Shops
+                %th Expenses
+                %th Reimbursements
+                %th Fees
+                %th Profit
+            %tbody.table.table-hover
+              %tr
+                %td #{Time.now.year}
+                %td= @shops.by_year((Time.now.year), field: :shop_date).count
+                %td= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:expenses)
+                %td= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:reimbursement)
+                %td= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:fee)
+                %td= number_to_currency (@shops.by_year((Time.now.year), field: :shop_date).sum(:reimbursement) + @shops.by_year((Time.now.year), field: :shop_date).sum(:fee)) - @shops.by_year((Time.now.year), field: :shop_date).sum(:expenses)

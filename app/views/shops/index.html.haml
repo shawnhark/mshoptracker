@@ -6,11 +6,11 @@
     %li.active
       %a All
     %li
-      %a{:href => "#previous_year"} #{(Time.now.year)-1}
+      %a{:href => "#previous_year"} #{(Time.current.year)-1}
     %li
-      %a{:href => "#current_year"} #{Time.now.year}
+      %a{:href => "#current_year"} #{Time.current.year}
     %li
-      %a{:href => "#next_year"} #{(Time.now.year)+1}
+      %a{:href => "#next_year"} #{(Time.current.year)+1}
   .well
     %table.table.table-bordered.table-hover
       %thead
@@ -66,8 +66,8 @@
           %th
           %th
       %tbody.table.table-hover
-        %h4 All #{Time.now.year} shops:
-        - @shops.by_year((Time.now.year), field: :shop_date).each do |shop|
+        %h4 All #{Time.current.year} shops:
+        - @shops.by_year((Time.current.year), field: :shop_date).each do |shop|
           %tr
             %td= shop.store_name
             %td= shop.location
@@ -85,9 +85,9 @@
           %th
           %th
           %th  TOTALS
-          %th= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:expenses)
-          %th= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:reimbursement)
-          %th= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:fee)
+          %th= number_to_currency @shops.by_year((Time.current.year), field: :shop_date).sum(:expenses)
+          %th= number_to_currency @shops.by_year((Time.current.year), field: :shop_date).sum(:reimbursement)
+          %th= number_to_currency @shops.by_year((Time.current.year), field: :shop_date).sum(:fee)
           %th
           %th
           %th
@@ -107,8 +107,8 @@
           %th
           %th
       %tbody.table.table-hover
-        %h4 All #{(Time.now.year)-1} shops:
-        - @shops.by_year((Time.now.year)-1, field: :shop_date).each do |shop|
+        %h4 All #{(Time.current.year)-1} shops:
+        - @shops.by_year((Time.current.year)-1, field: :shop_date).each do |shop|
           %tr
             %td= shop.store_name
             %td= shop.location
@@ -126,9 +126,9 @@
           %th
           %th
           %th  TOTALS
-          %th= number_to_currency @shops.by_year((Time.now.year)-1, field: :shop_date).sum(:expenses)
-          %th= number_to_currency @shops.by_year((Time.now.year)-1, field: :shop_date).sum(:reimbursement)
-          %th= number_to_currency @shops.by_year((Time.now.year)-1, field: :shop_date).sum(:fee)
+          %th= number_to_currency @shops.by_year((Time.current.year)-1, field: :shop_date).sum(:expenses)
+          %th= number_to_currency @shops.by_year((Time.current.year)-1, field: :shop_date).sum(:reimbursement)
+          %th= number_to_currency @shops.by_year((Time.current.year)-1, field: :shop_date).sum(:fee)
           %th
           %th
           %th
@@ -148,8 +148,8 @@
           %th
           %th
       %tbody.table.table-hover
-        %h4 All #{(Time.now.year)+1} shops:
-        - @shops.by_year((Time.now.year)+1, field: :shop_date).each do |shop|
+        %h4 All #{(Time.current.year)+1} shops:
+        - @shops.by_year((Time.current.year)+1, field: :shop_date).each do |shop|
           %tr
             %td= shop.store_name
             %td= shop.location
@@ -167,9 +167,9 @@
           %th
           %th
           %th  TOTALS
-          %th= number_to_currency @shops.by_year((Time.now.year)+1, field: :shop_date).sum(:expenses)
-          %th= number_to_currency @shops.by_year((Time.now.year)+1, field: :shop_date).sum(:reimbursement)
-          %th= number_to_currency @shops.by_year((Time.now.year)+1, field: :shop_date).sum(:fee)
+          %th= number_to_currency @shops.by_year((Time.current.year)+1, field: :shop_date).sum(:expenses)
+          %th= number_to_currency @shops.by_year((Time.current.year)+1, field: :shop_date).sum(:reimbursement)
+          %th= number_to_currency @shops.by_year((Time.current.year)+1, field: :shop_date).sum(:fee)
           %th
           %th
           %th

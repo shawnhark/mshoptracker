@@ -9,4 +9,8 @@ module ApplicationHelper
     dt.strftime("%A, %b %d, %Y")
   end
 
+  def set_timezone
+    Time.zone = current_user.time_zone || 'Eastern Time (US & Canada)'
+  end
+
 end

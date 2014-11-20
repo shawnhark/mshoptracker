@@ -19,12 +19,12 @@
                 %th Profit
             %tbody.table.table-hover
               %tr
-                %td #{Time.now.year}
-                %td= @shops.by_year((Time.now.year), field: :shop_date).count
-                %td= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:expenses)
-                %td= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:reimbursement)
-                %td= number_to_currency @shops.by_year((Time.now.year), field: :shop_date).sum(:fee)
-                %td= number_to_currency (@shops.by_year((Time.now.year), field: :shop_date).sum(:reimbursement) + @shops.by_year((Time.now.year), field: :shop_date).sum(:fee)) - @shops.by_year((Time.now.year), field: :shop_date).sum(:expenses)
+                %td #{Time.current.year}
+                %td= @shops.by_year((Time.current.year), field: :shop_date).count
+                %td= number_to_currency @shops.by_year((Time.current.year), field: :shop_date).sum(:expenses)
+                %td= number_to_currency @shops.by_year((Time.current.year), field: :shop_date).sum(:reimbursement)
+                %td= number_to_currency @shops.by_year((Time.current.year), field: :shop_date).sum(:fee)
+                %td= number_to_currency (@shops.by_year((Time.current.year), field: :shop_date).sum(:reimbursement) + @shops.by_year((Time.current.year), field: :shop_date).sum(:fee)) - @shops.by_year((Time.current.year), field: :shop_date).sum(:expenses)
       .well
         %h3 #{link_to "Recent Shops", shops_path}
         = link_to "See all #{@user.shops.count} shops", shops_path, class: "btn btn-small" 

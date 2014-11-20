@@ -24,6 +24,10 @@
     .col-sm-10
       = f.password_field :password, placeholder: "Choose your password...", class: "form-control"
   .form-group
+    %label.col-sm-2.control-label Time Zone
+    .col-sm-10
+      = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, class: "form-control"
+  .form-group
     .col-sm-offset-2.col-sm-10
       - if logged_in?
         = f.submit "Update", class: "btn btn-primary"

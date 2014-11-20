@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014233044) do
+ActiveRecord::Schema.define(version: 20141119230652) do
 
   create_table "payments", force: true do |t|
     t.string   "ms_company"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20141014233044) do
     t.boolean  "active",          default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "time_zone",       default: "Eastern Time (US & Canada)"
   end
 
 end

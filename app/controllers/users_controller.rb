@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 
 private
   def users_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :token, :admin, :active)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :token, :admin, :active, :time_zone)
   end
 
   def set_user_shops
